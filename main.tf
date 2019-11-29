@@ -239,23 +239,3 @@ module "ecs_cloudwatch_sns_alarms" {
 
   memory_utilization_low_ok_actions = var.ecs_alarms_memory_utilization_low_ok_actions
 }
-
-module "alb_target_group_cloudwatch_sns_alarms" {
-  source                         = "git::https://github.com/cloudposse/terraform-aws-alb-target-group-cloudwatch-sns-alarms.git?ref=tags/0.7.0"
-  enabled                        = var.alb_target_group_alarms_enabled
-  name                           = var.name
-  namespace                      = var.namespace
-  stage                          = var.stage
-  attributes                     = var.attributes
-  alarm_actions                  = var.alb_target_group_alarms_alarm_actions
-  ok_actions                     = var.alb_target_group_alarms_ok_actions
-  insufficient_data_actions      = var.alb_target_group_alarms_insufficient_data_actions
-  alb_arn_suffix                 = var.alb_arn_suffix
-  target_group_arn_suffix        = module.alb_ingress.target_group_arn_suffix
-  target_3xx_count_threshold     = var.alb_target_group_alarms_3xx_threshold
-  target_4xx_count_threshold     = var.alb_target_group_alarms_4xx_threshold
-  target_5xx_count_threshold     = var.alb_target_group_alarms_5xx_threshold
-  target_response_time_threshold = var.alb_target_group_alarms_response_time_threshold
-  period                         = var.alb_target_group_alarms_period
-  evaluation_periods             = var.alb_target_group_alarms_evaluation_periods
-}
